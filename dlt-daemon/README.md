@@ -16,17 +16,13 @@ DLT에 대한 기본 메커니즘에 익숙해진 후에는 고급 개념과 기
 
 ## 개요
 
-COVESA DLT provides a log and trace interface, based on the standardised
-protocol specified in the
-[AUTOSAR standard 4 DLT](https://www.autosar.org/fileadmin/standards/R22-11/CP/AUTOSAR_SWS_DiagnosticLogAndTrace.pdf).
-It is used by other COVESA components but can serve as logging framework for
-other applications without relation to COVESA.
+COVESA DLT는 [AUTOSAR standard 4 DLT](https://www.autosar.org/fileadmin/standards/R22-11/CP/AUTOSAR_SWS_DiagnosticLogAndTrace.pdf)에 명시된 표준화된 프로토콜 기반의 로그 및 추적 인터페이스를 제공합니다.
+다른 COVESA 컴포넌트에서 사용되지만 COVESA와 관련 없는 기타 애플리케이션을 위한 로깅 프레임워크 역할도 할 수 있습니다.
 
-The most important terms and parts are depicted in the following figure. Please
-refer to [Glossary](doc/dlt_glossary.md) for a full overview over DLT-specific
-terms.
+가장 중요한 용어 및 파트는 아래 그림에 설명되어 있습니다.
+Please refer to [Glossary](doc/dlt_glossary.md) for a full overview over DLT-specific terms.
 
-![alt text](doc/images/dlt_overview.png "DLT Overview")
+![alt text](https://github.com/COVESA/dlt-daemon/tree/master/doc/images/dlt_overview.png "DLT Overview")
 
 - A **DLT User** essentially is an application that serves its respective (not
 DLT-related) purpose and produces DLT log messages. It utilizes the DLT library
@@ -123,7 +119,7 @@ To build the DLT debian package for your own purpose, follow these steps:
 dpkg-buildpackage -us -uc
 ```
 
-## 더-배우기
+## 더 배우기
 Once you got your feet wet with developing your first application, you might
 want to learn more. Find out about DLT's [advanced topics](#advanced-topics),
 learn how to [configure, control and interface](#configure-control-and-interface)
