@@ -9,15 +9,12 @@
 
 # Diagnostic Log and Trace
 
-Welcome to COVESA Diagnostic Log and Trace (DLT). If you are familiar with DLT
-and want to know what's new, check the [Release Notes](ReleaseNotes.md).
+COVESA Diagnostic Log and Trace (DLT)를 보러 오신 것을 환영합니다. 만약 DLT가 익숙하고 새로 바뀐 것이 궁금하다면 [릴리스 노트](ReleaseNotes.md)를 확인하십시오.
 
-**New to DLT? Great! Welcome aboard.** We prepared a brief [overview](#overview)
-for you as well as some information on how to [get started](#get-started)
-immediately. After you made yourself familiar with the basic mechanics of DLT,
-you can [learn more](#learn-more) about advanced concepts and features.
+**DLT는 처음입니까? 좋아요! 잘 오셨습니다.** 당신을 위한 간단한 [개요](#개요)와 즉시 [시작](#시작하기)하는 방법에 대한 정보를 준비했습니다.
+DLT에 대한 기본 메커니즘에 익숙해진 후에는 고급 개념과 기능에 대해 [더 배울](#더-배우기) 수 있습니다.
 
-## Overview
+## 개요
 
 COVESA DLT provides a log and trace interface, based on the standardised
 protocol specified in the
@@ -52,7 +49,7 @@ This is only the simplest of all use cases that you will further pursue in the
 you will find that the repository contains advanced features utilizing several
 adaptors and console utilities as well as test applications.
 
-## Get Started
+## 시작하기
 In this section, you can learn how to [build and install](#build-and-install)
 DLT. Then you can choose to [run a DLT demo](#run-a-dlt-demo) setup or to start
 by [developing your own DLT-featured application](#develop-your-own-dlt-featured-application).
@@ -126,7 +123,7 @@ To build the DLT debian package for your own purpose, follow these steps:
 dpkg-buildpackage -us -uc
 ```
 
-## Learn more
+## 더-배우기
 Once you got your feet wet with developing your first application, you might
 want to learn more. Find out about DLT's [advanced topics](#advanced-topics),
 learn how to [configure, control and interface](#configure-control-and-interface)
