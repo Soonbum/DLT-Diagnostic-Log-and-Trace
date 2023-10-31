@@ -19,62 +19,44 @@ DLT에 대한 기본 메커니즘에 익숙해진 후에는 고급 개념과 기
 COVESA DLT는 [AUTOSAR standard 4 DLT](https://www.autosar.org/fileadmin/standards/R22-11/CP/AUTOSAR_SWS_DiagnosticLogAndTrace.pdf)에 명시된 표준화된 프로토콜 기반의 로그 및 추적 인터페이스를 제공합니다.
 다른 COVESA 컴포넌트에서 사용되지만 COVESA와 관련 없는 기타 애플리케이션을 위한 로깅 프레임워크 역할도 할 수 있습니다.
 
-가장 중요한 용어 및 파트는 아래 그림에 설명되어 있습니다.
-Please refer to [Glossary](doc/dlt_glossary.md) for a full overview over DLT-specific terms.
+가장 중요한 용어 및 파트는 아래 그림에 설명되어 있습니다. DLT 관련 용어에 대한 전체 개요는 [용어집](doc/dlt_glossary.md)을 참조하십시오.
 
-![alt text](https://github.com/COVESA/dlt-daemon/tree/master/doc/images/dlt_overview.png "DLT Overview")
+![alt text](https://github.com/COVESA/dlt-daemon/blob/master/doc/images/dlt_overview.png)
 
-- A **DLT User** essentially is an application that serves its respective (not
-DLT-related) purpose and produces DLT log messages. It utilizes the DLT library
-to craft and transmit these messages.
-- The **DLT Library** provides a convenient API to DLT Users (i.e. applications)
-to create DLT log messages and hand them over to the DLT Daemon. If the latter
-is not avilable, the library will cache the messages in a ring buffer so they
-don't get lost immediately.
-- The **DLT Daemon** is the DLT communication interface of an ECU. It collects
-and buffers log messages from one or more DLT users running on the ECU and
-provides them to DLT clients upon their request. The daemon also accepts control
-messages from the clients to adjust the daemon's or the aplications' behaviour.
-- A **DLT Client** receives and consumes the log messages from DLT Users by
-fetching them from DLT Daemons. It may also issue control messages to control
-the behaviour of a DLT Daemon or its connected DLT Users. A DLT client can even
-transmit user-defined data to a DLT User through so-calles injection messages.
+- **DLT User**는 본질적으로 (DLT와 관련되지 않은) 각각의 목적을 달성하고 DLT 로그 메시지를 생성하는 어플리케이션으로, DLT 라이브러리를 활용하여 이러한 메시지를 제작하고 전송합니다.
+- **DLT Library**는 DLT 사용자(예. 애플리케이션)에게 편리한 API를 제공하여 DLT 로그 메시지를 생성하고 DLT 데몬에게 전달할 수 있게 해줍니다. 후자가 불가능한 경우, 라이브러리는 메시지가 즉시 손실되지 않도록 링 버퍼에 캐시합니다.
+- **DLT Daemon**은 ECU의 DLT 통신 인터페이스입니다. ECU 상에서 동작하는 하나 이상의 DLT 사용자로부터 로그 메시지를 수집 및 버퍼링하여 요청 시 DLT 클라이언트에게 제공하고, 또한 데몬은 클라이언트로부터의 제어 메시지를 받아 데몬 또는 애플리케이션의 동작을 조정합니다.
+- **DLT Client**는 DLT 데몬으로부터 로그 메시지를 가져와 DLT 사용자로부터 수신 및 소비합니다. 또한 DLT 데몬 또는 연결된 DLT 사용자의 동작을 제어하기 위해 제어 메시지를 발행할 수도 있습니다. DLT 클라이언트는 사용자 정의 데이터를 소위 주입(injection) 메시지를 통해 DLT 사용자에게 전송할 수도 있습니다.
 
-This is only the simplest of all use cases that you will further pursue in the
-[Get Started](#get-started) section. Once you want to [learn more](#learn-more),
-you will find that the repository contains advanced features utilizing several
-adaptors and console utilities as well as test applications.
+이는 [시작하기](#시작하기) 섹션에서 계속해서 살펴볼 모든 사용 사례 중 가장 간단한 것에 불과합니다. [더 배우기](#더-배우기)를 원하신다면 여러 어댑터와 콘솔 유틸리티 및 테스트 애플리케이션을 활용하는 고급 기능이 포함되어 있는 리포지토리를 찾아 보십시오.
 
 ## 시작하기
-In this section, you can learn how to [build and install](#build-and-install)
-DLT. Then you can choose to [run a DLT demo](#run-a-dlt-demo) setup or to start
-by [developing your own DLT-featured application](#develop-your-own-dlt-featured-application).
+이 섹션에서는 DLT [빌드 및 설치](#빌드-및-설치) 방법을 배울 수 있습니다.
+그리고 나서 [DLT 데모 실행](#DLT-데모-실행) 설정 또는 [나만의 DLT 기능이 포함된 애플리케이션 개발하기](#나만의-DLT-기능이-포함된-애플리케이션-개발하기)를 시작할 수 있습니다.
 
-### Build and install
+### 빌드 및 설치
 
-The following packages need to be installed in order to be able to build and
-install DLT daemon:
+DLT 데몬을 빌드 및 설치하려면 다음 패키지들을 설치해야 합니다:
 
 - cmake
 - zlib
 - dbus
-- json-c (only required for dlt-receives extended filtering)
+- json-c (dlt-receives 확장 필터링에만 필요함)
 
-On Ubuntu those dependencies can be installed with the following command:
+Ubuntu의 경우, 다음 커맨드를 이용하여 위의 종속성을 설치할 수 있습니다:
 
 ```bash
 sudo apt-get install cmake zlib1g-dev libdbus-glib-1-dev build-essential
-optional: sudo apt-get install libjson-c-dev # in case you want to use dlt-receives extended filtering
+optional: sudo apt-get install libjson-c-dev # dlt-receives 확장 필터링을 사용하고 싶을 경우
 ```
 
-Then proceed to download DLT if you haven't already. We recommend cloning the
-repository, but downloading and extracting a zip-archive is fine as well.
+그 다음에 아직 DLT를 다운로드하지 않았다면 다운로드를 진행하십시오. 리포지토리를 복제하는 것을 추천하지만 zip-archive를 다운로드하여 추출하는 것도 좋습니다.
 ```bash
 cd /path/to/workspace
 git clone https://github.com/COVESA/dlt-daemon.git
 ```
 
-To build and install the DLT daemon, follow these steps:
+DLT 데몬을 빌드 및 설치하려면 다음 단계를 따르십시오:
 
 ```bash
 cd /path/to/workspace/dlt-daemon
@@ -83,18 +65,17 @@ cd build
 cmake ..
 make
 optional: sudo make install
-optional: sudo ldconfig # in case you executed make install
+optional: sudo ldconfig # make install을 실행한 경우
 ```
-CMake accepts a plethora of [build options](doc/dlt_build_options.md) to
-configure the build to suit your needs.
+CMake는 당신의 필요에 맞게 빌드를 구성하기 위한 수많은 [빌드 옵션](doc/dlt_build_options.md)을 허용합니다.
 
-### Run a DLT demo
+### DLT 데모 실행
 In case you haven't had a look at the brief [overview](#overview), now would be
 the perfect occasion to learn about the most important terms and to get an idea
 where data is buffered. Then go on with our guide on [how to set up a DLT demo
 setup](doc/dlt_demo_setup.md).
 
-### Develop your own DLT-featured application
+### 나만의 DLT 기능이 포함된 애플리케이션 개발하기
 
 Now that you have seen DLT in action, you probably want to develop your own
 applications using DLT. You will find everything you need in our ["DLT for
