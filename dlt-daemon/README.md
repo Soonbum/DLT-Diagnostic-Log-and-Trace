@@ -47,7 +47,7 @@ Ubuntu의 경우, 다음 커맨드를 이용하여 위의 종속성을 설치할
 
 ```bash
 sudo apt-get install cmake zlib1g-dev libdbus-glib-1-dev build-essential
-optional: sudo apt-get install libjson-c-dev # dlt-receives 확장 필터링을 사용하고 싶을 경우
+선택사항: sudo apt-get install libjson-c-dev # dlt-receives 확장 필터링을 사용하고 싶을 경우
 ```
 
 그 다음에 아직 DLT를 다운로드하지 않았다면 다운로드를 진행하십시오. 리포지토리를 복제하는 것을 추천하지만 zip-archive를 다운로드하여 추출하는 것도 좋습니다.
@@ -64,26 +64,19 @@ mkdir build
 cd build
 cmake ..
 make
-optional: sudo make install
-optional: sudo ldconfig # make install을 실행한 경우
+선택사항: sudo make install
+선택사항: sudo ldconfig # make install을 실행한 경우
 ```
 CMake는 당신의 필요에 맞게 빌드를 구성하기 위한 수많은 [빌드 옵션](doc/dlt_build_options.md)을 허용합니다.
 
 ### DLT 데모 실행
-In case you haven't had a look at the brief [overview](#overview), now would be
-the perfect occasion to learn about the most important terms and to get an idea
-where data is buffered. Then go on with our guide on [how to set up a DLT demo
-setup](doc/dlt_demo_setup.md).
+만약 간략한 [개요](#개요)를 보지 않았다면, 지금이야말로 가장 중요한 용어에 대해 알아보고, 데이터가 버퍼링되는 위치에 대한 아이디어를 얻을 수 있는 완벽한 기회가 될 것입니다. 그 다음에 [DLT 데모 설정 방법](doc/dlt_demo_setup.md)에 대한 가이드를 진행할 것입니다.
 
 ### 나만의 DLT 기능이 포함된 애플리케이션 개발하기
 
-Now that you have seen DLT in action, you probably want to develop your own
-applications using DLT. You will find everything you need in our ["DLT for
-Application Developers" guide](doc/dlt_for_developers.md).
+DLT가 실행되고 있는 것을 보았으므로, DLT를 사용하여 자신만의 애플리케이션을 개발하고 싶을 것입니다. ["애플리케이션 개발자를 위한 DLT" 가이드](doc/dlt_for_developers.md)에서 필요한 모든 것을 찾을 수 있습니다.
 
-A hint: If you want to read the API documentation, you have to build it locally
-at the moment. The API documentation is generated with _doxygen_. To build it,
-run cmake with the ```-DWITH_DOC=ON``` option, e.g.:
+힌트: API 문서를 읽고 싶으면 현재 로컬에서 빌드해야 합니다. API 문서는 _doxygen_로 생성됩니다. 빌드하려면 cmake에 옵션 ```-DWITH_DOC=ON```을 붙여서 실행하십시오. 다음은 예시입니다:
 
 ```bash
 mkdir build
@@ -92,9 +85,9 @@ cmake -DWITH_DOC=ON ..
 make doc
 ```
 
-### Build DLT debian package
+### DLT 데비안 패키지 빌드하기
 
-To build the DLT debian package for your own purpose, follow these steps:
+당신만의 목적을 위해 DLT 데비안 패키지를 빌드하려면 다음 단계를 따르십시오:
 
 ```bash
 dpkg-buildpackage -us -uc
