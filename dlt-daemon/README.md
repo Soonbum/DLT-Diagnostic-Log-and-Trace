@@ -108,7 +108,7 @@ COVESA DLT 구현은 로그 메시지를 "그저" 보낼 수 있는 것 이상�
 | [Extended Network Trace](doc/dlt_extended_network_trace.md) | 일반 DLT 메시지는 크기가 제한되어 있습니다. 이 제한을 극복하기 위해 피쳐 네트워크 트레이스 메시지를 사용하면, 사용자는 일반 DLT 메시지에 맞지 않는 메시지를 보내거나 잘라낼 수 있습니다. |
 | [DLT Filetransfer](doc/dlt_filetransfer.md) | 원래 이를 위해 설계되지는 않았지만 DLT를 통해 파일을 전송할 수 있습니다. 해당 DLT 클라이언트(예: DLT 뷰어)는 그에 따라 파일을 수신하고 디코딩할 수 있습니다. |
 | [DLT KPI](doc/dlt_kpi.md) | 모니터링되는 시스템에 대한 가치 있는 상태 정보는 DLT를 통해서도 읽을 수 있습니다. 대상 시스템의 '/proc' 아래의 정보를 쉽게 손에 넣을 수 있습니다. |
-| [DLT Core Dump Handler](/doc/dlt_cdh.md) | 이 도구는 디버그 정보를 수집하고 추출한 다음 [DLT Filetransfer](doc/dlt_filetransfer.md)를 사용하여 클라이언트에 정보를 전송합니다. |
+| [DLT Core Dump Handler](doc/dlt_cdh.md) | 이 도구는 디버그 정보를 수집하고 추출한 다음 [DLT Filetransfer](doc/dlt_filetransfer.md)를 사용하여 클라이언트에 정보를 전송합니다. |
 
 ### 구성, 제어 및 인터페이스
 
@@ -191,4 +191,4 @@ cityhash 코드에 대한 라이선스의 전체 정보는 src/core\_dump\_handl
 Methner, Michael <mmethner@de.adit-jv.com>,
 Le Van, Khanh <Khanh.LeVan@vn.bosch.com>
 
-![alt text](doc/images/covesa-logo.png "COVESA logo")
+![alt text](https://github.com/COVESA/dlt-daemon/blob/master/doc/images/covesa-logo.png "COVESA logo")
