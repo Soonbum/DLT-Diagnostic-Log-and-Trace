@@ -94,38 +94,29 @@ dpkg-buildpackage -us -uc
 ```
 
 ## 더 배우기
-Once you got your feet wet with developing your first application, you might
-want to learn more. Find out about DLT's [advanced topics](#advanced-topics),
-learn how to [configure, control and interface](#configure-control-and-interface)
-DLT or study its internals by checking out the [design
-specifications](./doc/dlt_design_specification.md).
+1번째 애플리케이션에 개발에 몰두한 후에는 더 많은 것을 배우고 싶을 것입니다.
+DLT의 [고급 주제](#고급-주제)에 대해 알아보고, DLT의 [구성, 제어 및 인터페이스](#구성,-제어-및-인터페이스)에 대해 배우거나 [설계 사양](./doc/dlt_design_specification.md)을 확인하여 내부를 연구해 보십시오.
 
-### Advanced Topics
-The COVESA DLT implementation is capable of by far more than to "just" send log
-message. You will get an overview of advanced features in this section. Follow
-the links to learn more about the respective concept.
+### 고급 주제
+COVESA DLT 구현은 로그 메시지를 "그저" 보낼 수 있는 것 이상의 능력을 갖추고 있습니다. 이 섹션에서는 고급 기능에 대한 개요를 볼 수 있습니다. 링크를 따라 각 개념에 대해 자세히 알아보십시오.
 
-| Document | Description |
+| 문서 | 설명 |
 |----|----|
-| [Build Options](./doc/dlt_build_options.md) | The CMake build system provides a large amount of build options. They let you turn on or off certain features and provide alternative implementation details. |
-| [LogStorage](doc/dlt_offline_logstorage.md) | The DLT Daemon as well as the DLT libary provide buffers for caching log data during absence of a consumer. However, some use cases require to write large amounts of log message e.g. to mass storages for long term storage or because no other means of exfiltrating the log data is available. |
-| [MultiNode](doc/dlt_multinode.md) | A DLT Daemon can run as a gateway to connect multiple passive nodes. Each passive node has its owns DLT Applications and runs its own daemon. The gateway node connects to all of them, collects the logs and routes them to the DLT Client. |
-| [Extended Network Trace](doc/dlt_extended_network_trace.md) | Normal DLT messages are limited in size. To overcome this limitation the feature network trace message allows the user to send or truncate messages which would not fit into a normal DLT message. |
-| [DLT Filetransfer](doc/dlt_filetransfer.md) | Although not originally designed for this, files can be transmitted over DLT. A corresponding DLT Client (e.g. DLT Viewer) can receive and decode them accordingly. |
-| [DLT KPI](doc/dlt_kpi.md) | Valueable status information about the monitored system can be read via DLT as well. The information under `/proc` of the target system is at your hands easily. |
-| [DLT Core Dump Handler](/doc/dlt_cdh.md) | This tool collects and extracts debug information then utilize [DLT Filetransfer](doc/dlt_filetransfer.md) to transfer the information to client. |
+| [Build Options](./doc/dlt_build_options.md) | CMake 빌드 시스템은 대량의 빌드 옵션을 제공합니다. 특정 기능을 설정하거나 해제할 수 있으며 대체 구현 세부 정보를 제공합니다. |
+| [LogStorage](doc/dlt_offline_logstorage.md) | DLT 데몬과 DLT 라이브러리는 소비자가 없을 때 로그 데이터를 캐싱하기 위한 버퍼를 제공합니다. 그러나 일부 사용 사례에서는 장기 저장을 위한 대량 저장, 또는 로그 데이터를 빼낼 수 있는 다른 방법이 없기 때문에 대량의 로그 메시지를 작성해야 합니다. |
+| [MultiNode](doc/dlt_multinode.md) | DLT 데몬은 여러 패시브 노드를 연결하기 위한 게이트웨이로 실행될 수 있습니다. 각 패시브 노드는 고유의 DLT 애플리케이션을 가지고 있으며 고유의 데몬을 실행합니다. 게이트웨이 노드는 이들 모두에 연결되어 로그를 수집하여 DLT 클라이언트로 라우팅합니다. |
+| [Extended Network Trace](doc/dlt_extended_network_trace.md) | 일반 DLT 메시지는 크기가 제한되어 있습니다. 이 제한을 극복하기 위해 피쳐 네트워크 트레이스 메시지를 사용하면, 사용자는 일반 DLT 메시지에 맞지 않는 메시지를 보내거나 잘라낼 수 있습니다. |
+| [DLT Filetransfer](doc/dlt_filetransfer.md) | 원래 이를 위해 설계되지는 않았지만 DLT를 통해 파일을 전송할 수 있습니다. 해당 DLT 클라이언트(예: DLT 뷰어)는 그에 따라 파일을 수신하고 디코딩할 수 있습니다. |
+| [DLT KPI](doc/dlt_kpi.md) | 모니터링되는 시스템에 대한 가치 있는 상태 정보는 DLT를 통해서도 읽을 수 있습니다. 대상 시스템의 '/proc' 아래의 정보를 쉽게 손에 넣을 수 있습니다. |
+| [DLT Core Dump Handler](/doc/dlt_cdh.md) | 이 도구는 디버그 정보를 수집하고 추출한 다음 [DLT Filetransfer](doc/dlt_filetransfer.md)를 사용하여 클라이언트에 정보를 전송합니다. |
 
-### Configure, Control and Interface
+### 구성, 제어 및 인터페이스
 
-There is still lots to discover about DLT. If you turn on the generation of
-manpages with the cmake option ```-DWITH_MAN=ON``` you can learn how to
-configure DLT to exactly suit your needs, how to control the behvaiour of
-running instances and how to interface DLT with existing system through
-provided adaptors.
+DLT에 대해서는 아직도 발견해야 할 것이 많습니다. cmake 옵션인 ```-DWITH_MAN=ON```으로 manpages 생성을 설정하면, DLT를 사용자의 요구에 정확히 맞게 구성하는 방법과 실행 중인 인스턴스의 동작을 제어하는 방법, 그리고 제공된 어댑터를 통해 DLT를 기존 시스템과 인터페이싱하는 방법을 배울 수 있을 것입니다.
 
-The man pages are generated with *pandoc*, which also needs *asciidoc* as dependency.
+*pandoc*으로 man pages를 생성할 때 *asciidoc* 역시 종속적으로 필요합니다.
 
-Build manpages (initally or because something changed) with e.g.
+(처음, 혹은 뭔가가 바뀌었을 경우) 예제를 이용하여 manpages를 빌드하십시오.
 ```bash
 mkdir build
 cd build
@@ -133,79 +124,69 @@ cmake -DWITH_MAN=ON ..
 make generate_man
 ```
 
-| Document | Description |
+| 문서 | 설명 |
 |----|----|
-| *Configuration* ||
-|[dlt-daemon(1)](doc/dlt-daemon.1.md) | How to start DLT-Daemon |
-|[dlt.conf(5)](doc/dlt.conf.5.md) | Configure the DLT framework to reflect your use case|
-| *Control running instances of DLT*||
-|[dlt-receive(1)](doc/dlt-receive.1.md)| Receive DLT messages from daemon and print or store the log messages. |
-|[dlt-control(1)](doc/dlt-control.1.md)| Send control messages to daemon. |
-|[dlt-logstorage-ctrl(1)](doc/dlt-logstorage-ctrl.1.md)| Send a trigger to daemon to connect/disconnect certain logstorage device, or send a demand to sync data the internal buffer into logstorage file. |
-|[dlt-passive-node-ctrl(1)](doc/dlt-passive-node-ctrl.1.md)| Send a trigger to daemon to connect/disconnect passive daemon. |
-| *Interfacing DLT* ||
-|[dlt-system(1)](doc/dlt-system.1.md) | DLT-System provides a way to directly access system logs via DLT |
-|[dlt-system.conf(5)](doc/dlt-system.conf.5.md) | Configure DLT-System |
-|[dlt-adaptor-stdin(1)](doc/dlt-adaptor-stdin.1.md)| Adaptor for forwarding input from stdin to daemon. |
-|[dlt-adaptor-udp(1)](doc/dlt-adaptor-udp.1.md)| Adaptor for forwarding received UDP messages to daemon. |
-|[dlt-convert(1)](doc/dlt-convert.1.md)| Convert DLT files into human readable format. |
-|[dlt-sortbytimestamp(1)](doc/dlt-sortbytimestamp.1.md)| Read log messages from DLT file, sort by timestamp, and store them again. |
-|[dlt-qnx-system(1)](doc/dlt-qnx-system.md) | Access system logs in QNX with DLT |
+| *구성* ||
+|[dlt-daemon(1)](doc/dlt-daemon.1.md) | DLT-Daemon을 시작하는 방법 |
+|[dlt.conf(5)](doc/dlt.conf.5.md) | 사용 사례를 반영하기 위한 DLT 프레임워크 구성하기 |
+| *실행 중인 DLT 인스턴스 제어* ||
+|[dlt-receive(1)](doc/dlt-receive.1.md)| 데몬으로부터 DLT 메시지를 수신하고 로그 메시지를 출력하거나 저장합니다. |
+|[dlt-control(1)](doc/dlt-control.1.md)| 데몬에게 제어 메시지를 전송합니다. |
+|[dlt-logstorage-ctrl(1)](doc/dlt-logstorage-ctrl.1.md)| 특정 로그 저장 장치를 연결/연결 해제하기 위해 트리거를 데몬에 보내거나, 내부 버퍼 데이터를 로그 저장 파일에 동기화하기 위한 요구를 보냅니다. |
+|[dlt-passive-node-ctrl(1)](doc/dlt-passive-node-ctrl.1.md)| 패시브 데몬을 연결/연결 해제하기 위해 데몬에 트리거를 보냅니다. |
+| *DLT 인터페이싱* ||
+|[dlt-system(1)](doc/dlt-system.1.md) | DLT-시스템은 DLT를 통해 시스템 로그에 직접 액세스할 수 있는 방법을 제공합니다. |
+|[dlt-system.conf(5)](doc/dlt-system.conf.5.md) | DLT-시스템 구성하기 |
+|[dlt-adaptor-stdin(1)](doc/dlt-adaptor-stdin.1.md)| stdin에서 데몬으로 입력을 전달하기 위한 어댑터 |
+|[dlt-adaptor-udp(1)](doc/dlt-adaptor-udp.1.md)| 수신된 UDP 메시지를 데몬으로 전달하기 위한 어댑터 |
+|[dlt-convert(1)](doc/dlt-convert.1.md)| DLT 파일을 사람이 읽을 수 있는 포맷으로 변환합니다. |
+|[dlt-sortbytimestamp(1)](doc/dlt-sortbytimestamp.1.md)| DLT 파일에서 로그 메시지를 읽고, 타임스탬프 기준으로 정렬하고, 다시 저장합니다. |
+|[dlt-qnx-system(1)](doc/dlt-qnx-system.md) | DLT를 사용하여 QNX에서 시스템 로그에 접근합니다. |
 
-## Contribution
+## 기여
 
-Start working, best practice is to commit smaller, compilable pieces during the
-work that makes it easier to handle later on.
+작업을 시작합니다. 작업 중에는 나중에 처리하기 쉽도록 더 작고 컴파일 가능한 조각을 커밋(commit)하는 것이 최선의 방법입니다.
 
-If you want to commit your changes, create a
-[Pull Request](https://github.com/covesa/dlt-daemon/pulls) in Github. Please
-make sure to follow the
-[Rules for commit messages](https://at.projects.covesa.org/wiki/display/PROJ/Rules+for+Commit+Messages)
+만약 당신의 변경사항을 커밋(commit)하고 싶으면 Github에 [Pull Request](https://github.com/covesa/dlt-daemon/pulls)를 생성하십시오. 반드시 [커밋 메시지에 대한 규칙](https://at.projects.covesa.org/wiki/display/PROJ/Rules+for+Commit+Messages)을 따르십시오.
 
-### Coding Rules
+### 코딩 규칙
 
-This project is now using clang-format as replacement of uncrustify.
+이 프로젝트는 현재 uncrustify를 대체하기 위해 clang-format을 사용하고 있습니다.
 
-For convenience, any code changes will be harmonized before commit by hooks/pre-commit.
+편의상 모든 모드 변경사항은 hooks/pre-commit에 의해 commit 전에 조화가 이뤄질 것입니다.
 
-- Install clang-format
+- clang-format 설치하기
 
-- Install pre-commit script by:
+- 다음과 같이 pre-commit 스크립트 설치하기:
 
   ```bash
   cp scripts/pre-commit.sample .git/hooks/pre-commit
   ```
 
-- Configuration: .clang-format
+- 구성: .clang-format
 
-For reference to clang-format, you can check with:
+clang-format에 대한 참조에 대해서는, 다음을 이용하여 확인할 수 있습니다:
 [Configurator](https://zed0.co.uk/clang-format-configurator/)
 
-## Known issues
+## 알려진 이슈
 
-List of open issues can be found on
-[Github](https://github.com/COVESA/dlt-daemon/issues)
+알려진 이슈 목록은 다음에서 찾아볼 수 있습니다: [Github](https://github.com/COVESA/dlt-daemon/issues)
 
-- DLT library: Usage of dlt\_user\_log\_write\_float64() and DLT\_FLOAT64()
-  leads to "Illegal instruction (core dumped)" on ARM target.
-- DLT library: Nested calls to DLT\_LOG\_ ... are not supported, and will lead
-  to a deadlock.
-- For Non linux platforms [eg: QNX] IPC supported is UNIX\_SOCKET. For Linux
-  Platforms both IPC FIFO and UNIX\_SOCKET are supported
+- DLT 라이브러리: dlt\_user\_log\_write\_float64()와 DLT\_FLOAT64()를 사용하면 ARM 대상인 경우 "불법 명렁어 (코어 덤프)"를 발생시킵니다.
+- DLT 라이브러리: DLT\_LOG\_ ...에 대한 중첩된 호출을 지원하지 않습니다. 그리고 데드락을 야기하게 될 것입니다.
+- 비-Linux 플랫폼의 경우 [예: QNX] 지원되는 IPC는 UNIX\_SOCKET입니다. Linux 플랫폼의 경우 IPC FIFO와 UNIX\_SOCKET 둘 다 지원됩니다.
 
-## Software/Hardware
+## 소프트웨어/하드웨어
 
-Developed and tested with Ubuntu Linux 16 64-bit / Intel PC
+Ubuntu Linux 16 64-bit / Intel PC에서 개발하고 테스트하였습니다.
 
-## License
+## 라이선스
 
-Full information on the license for this software is available in the "LICENSE"
-file.
-Full information on the license for the cityhash code is available in "COPYING"
-file in src/core\_dump\_handler/cityhash\_c.
+이 소프트웨어에 대한 라이선스의 전체 정보는 "LICENSE" 파일에 있습니다.
+cityhash 코드에 대한 라이선스의 전체 정보는 src/core\_dump\_handler/cityhash\_c에 있는 "COPYING" 파일에 있습니다.
 
 
-## Contact
+## 연락처
 
 Methner, Michael <mmethner@de.adit-jv.com>,
 Le Van, Khanh <Khanh.LeVan@vn.bosch.com>
