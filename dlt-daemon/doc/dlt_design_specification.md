@@ -13,7 +13,7 @@ You can obtain one at http://mozilla.org/MPL/2.0/
 For further information see http://www.covesa.org/
 ***
 
-# DLT Design Specification
+# DLT 설계 사양
 Alexander Wenzel <Alexander.AW.Wenzel@bmw.de>
 0.0.1, 2012/10/10: Initial version
 
@@ -22,7 +22,7 @@ Luong Hong Duy Khanh <KHANH.LUONGHONGDUY@vn.bosch.com>
 
 ![covesalogo](images/covesalogo.png "COVESA")
 
-## Purpose
+## 목적
 This document specifies the usage of the DLT daemon v2 and also the internal
 functionality of the DLT daemon v2. The DLT daemon v2 is a complete rework of
 the DLT daemon v1, which is part of the COVESA 1.0 release.
@@ -32,7 +32,7 @@ The DLT daemon component is based on the
 (the current latest version is
 [R19-11](https://www.autosar.org/fileadmin/user_upload/standards/classic/19-11/AUTOSAR_SWS_DiagnosticLogAndTrace.pdf)).
 
-## Overview
+## 개요
 
 ![dlt_overview](images/dlt_overview.png "DLT OVERVIEW")
 
@@ -50,14 +50,14 @@ In DLT, a log message contains debug information like state changes or value
 changes and a trace message contains information, which has passed via the
 Virtual Function Bus (VFB).
 
-## Architecture
+## 아키텍처
 
-### DLT daemon
+### DLT 데몬
 
 The DLT daemon is the central component between the DLT clients and one or more
 applications using the DLT user library.
 
-#### Overview
+#### 개요
 The DLT daemon is a standalone application which is running as the center of
 management and this is implemented as a single-thread process. The DLT daemon
 communicates with the DLT clients over TCP/IP connections or over a serial line
@@ -78,7 +78,7 @@ Here is a rough schematic, how the DLT daemon is structured:
 ![dlt_architecture](images/dlt_architecture.png "DLT ARCHITECTURE")
 
 
-#### Initialization
+#### 초기화
 During initialization of the DLT daemon, the following steps occur:
 
 - Option handling.
@@ -117,7 +117,7 @@ mode, it uses the syslog daemon for log messages of the DLT daemon application.
   - Initialize the gateway mode, if specified, then prepare the timer for gateway.
 - Now, the initialization is finished, and the DLT daemon enters the main loop.
 
-#### Main loop
+#### 메인 루프
 In the main loop, the following things occur:
 
 - Wait for event(s) on the incoming named pipe or socket, the TCP connections
@@ -148,7 +148,7 @@ and possibly on the serial device, via poll() call.
 How the received user messages and control messages are handled, is described
 in the Appendix.
 
-#### Clean up
+#### 정리하기
 Before exiting from DLT daemon, the following cleanup procedures occur:
 
 - Local cleanup
@@ -166,9 +166,9 @@ Before exiting from DLT daemon, the following cleanup procedures occur:
   - Release and free memory used by dynamic ringbuffer
 
 Now, the cleanup is finished, and the DLT daemon is terminated.
-### DLT user library
+### DLT 사용자 라이브러리
 
-#### Overview
+#### 개요
 The DLT user library is linked to each application that wants to use DLT. It
 encapsulates the communication with the DLT daemon and provides two interfaces:
 the DLT user macro interface and the DLT user functional interface. All macros
@@ -183,7 +183,7 @@ send log messages to the daemon). To prevent the concurrent access to the DLT
 buffer, parts of functions accessible by the user interface are protected by a
 semaphore as well as parts of the function which is called within the thread.
 
-#### Initialization
+#### 초기화
 During initialization, the following things are done:
 
 - Setup internal structure including Application ID and Description (textual)
@@ -221,7 +221,7 @@ to the DLT daemon
 - Initialize receiver object
 - Start housekeeper thread for receiving messages
 
-#### De-Initialization
+#### 초기화 해제
 During de-initialization, the following things are done:
 
 - De-register application (and all contexts belonging to this application) from
@@ -232,7 +232,7 @@ DLT daemon
 - De-Initialize receiver object
 - De-Initialize ringbuffer
 
-#### Register application and context
+#### 애플리케이션 및 컨텍스트 등록하기
 During register of the application, the following things occur:
 
 - Auto-initialize DLT user library, if necessary
@@ -248,7 +248,7 @@ required, the context array in step size DLT_USER_CONTEXT_ALLOC_SIZE,
 typically 500. Then store one entry for the new context to internal context array.
 - Send message DLT_REGISTER_CONTEXT to DLT daemon
 
-#### Unregister context and application
+#### 컨텍스트 및 애플리케이션 등록 해제하기
 
 During unregister of context, the following things occur:
 
@@ -260,7 +260,7 @@ During unregister of application, the following things occur:
 - Delete application from internal structures
 - Send message DLT_UNREGISTER_APPLICATION to DLT daemon
 
-#### Handling of messages received from DLT daemon
+#### DLT 데몬으로부터 수신한 메시지 처리하기
 
 During housekeeper thread within the DLT user library checks for newly received
 messages from the DLT daemon, and handles them in the following way:
@@ -274,14 +274,14 @@ messages from the DLT daemon, and handles them in the following way:
     they matches:
       - Call registered callback function.
 
-#### Overflow handling
+#### 오버플로우 처리하기
 
 If the named pipe/socket of the DLT daemon is full, an overflow flag is set and
 the message stored in a ring buffer. The next time, a message could be sent to
 the DLT daemon, an overflow message is sent first, then the contents of the ring
 buffer. If sending of this message was possible, the overflow flag is reset.
 
-#### Send log message
+#### 로그 메시지 보내기
 
 During sending of a log message, the following things occur:
 
@@ -313,7 +313,7 @@ send this log message. This is a kind of filtering on the DLT user library side.
   - If sending failed, put this message in the ring buffer for later sending.
   - Handle these error conditions.
 
-#### Send network trace message
+#### 네트워크 트레이스 메시지 보내기
 
 During sending of a network trace message, the following things occur:
 
@@ -328,7 +328,7 @@ During sending of a network trace message, the following things occur:
   - Copy data of network trace payload to DLT log structure
   - Create new message with the help of the DLT log structure and handle this message
 
-#### Register callback function for injection message
+#### 인젝션 메시지를 위한 콜백 함수 등록하기
 
 During registration of a callback function for an injection message, then following
 steps are executed:
@@ -350,14 +350,14 @@ steps are executed:
       - Store service id in callback table
       - Store function pointer in callback table
 
-#### Android: Thread termination
+#### Android: 쓰레드 종료
 
 On Android, `pthread_cancel` is not available in bionic. So current
 implementation uses *SIGUSR1* and `pthread_kill` to terminate housekeeper
 thread. Due to this, application which is linked to DLT library should not
 define *SIGUSR1*.
 
-### Communication between DLT daemon and DLT user library
+### DLT 데몬과 DLT 사용자 라이브러리 간 통신
 
 The communication mechanism (IPC) used between DLT daemon and DLT user library
 are named pipes (FIFOs), UNIX sockets or VSOCK sockets, based on compile time
@@ -405,7 +405,7 @@ using a [multinode](dlt_multinode.md) setup for receiving DLT log messages from
 processes in a virtualized environment. No passive daemon(s) are required and it
 works without having a network configured between the guest and the host.
 
-### Place of message creation
+### 메시지 생성 장소
 
 The following table shows, where the certain types of DLT messages are created.
 The message types are described in more detail in the AUTOSAR Specification for
@@ -428,15 +428,15 @@ created in the DLT daemon, and then sent to the DLT client.
 then passed (via the named pipe of the DLT daemon) to the DLT daemon, which
 forwards them to the connected DLT clients.
 
-### Message flow
+### 메시지 흐름
 The following figure shows the overall flow of messages.
 
 ![dlt_message_flow](images/dlt_message_flow.png "DLT MESSAGE FLOW")
 
 
-## Appendix
+## 부록
 
-### Messages exchanged between DLT daemon and DLT user library
+### DLT 데몬과 DLT 사용자 라이브러리 간 교환되는 메시지
 
 There are several user messages (each has its own message identifier
 DLT_USER_MESSAGE_*) which will are exchanged between DLT daemon and DLT user
@@ -462,7 +462,7 @@ Each of the following messages has a message header with the following informati
 - Pattern: DUH0x01
 - Message identifier
 
-#### User Message: Register Application
+#### 사용자 메시지: 애플리케이션 등록하기
 
 This message is sent by the DLT user library once per application to register the
 application to the DLT daemon.
@@ -474,7 +474,7 @@ required, if the DLT daemon wants to send something to the DLT user library.
 - The length of the following description.
 - The application description.
 
-#### User Message: Unregister Application
+#### 사용자 메시지: 애플리케이션 등록 해제하기
 
 This message is sent by the DLT user library once per application to unregister
 the application from the DLT daemon.
@@ -483,7 +483,7 @@ It contains the following information:
 - The application id of the application to be unregistered
 - The process id of the process using the DLT user library.
 
-#### User Message: Register Context
+#### 사용자 메시지: 컨텍스트 등록하기
 
 This message is sent by the DLT user library once for each context which should
 be registered to the DLT daemon.
@@ -500,7 +500,7 @@ required, if the DLT daemon wants to send something to the DLT user library.
 - The length of the following description.
 - The context description.
 
-#### User Message: Unregister Context
+#### 사용자 메시지: 컨텍스트 등록 해제하기
 
 This message is sent by the DLT user library once for each context which should
 be unregistered from the DLT daemon.
@@ -510,7 +510,7 @@ It contains the following information:
 - The context id of the application to be unregistered
 - The process id of the process using the DLT user library.
 
-#### User Message: Log
+#### 사용자 메시지: 로그
 
 This is the standard log/trace message send by the DLT user library to the DLT daemon.
 It contains the following information:
@@ -519,13 +519,13 @@ It contains the following information:
 - An extended DLT message header as specified in the AUTOSAR R4.0 DLT standard.
 - The payload of the DLT message
 
-#### User Message: Overflow
+#### 사용자 메시지: 오버플로우
 
 This message is sent from the DLT user library to the DLT daemon, if there was
 an overflow during writing to the DLT daemon named pipe or socket IPC.
 It contains no further information.
 
-#### User Message: Application Log Level and Trace Status
+#### 사용자 메시지: 애플리케이션 로그 레벨 및 트레이스 상태
 
 This message is sent from the DLT user library to the DLT daemon, when the
 overall Log Level and Trace Status for the whole DLT application should be set
@@ -536,7 +536,7 @@ It contains the following information:
 - The Log Level to be set for the whole application
 - The Trace Status to be set for the whole application
 
-#### User Message: Log Level
+#### 사용자 메시지: 로그 레벨
 
 If the log level or trace status is changed, or initialized, this message is
 sent from the DLT daemon to the DLT user library to store the current log level
@@ -549,7 +549,7 @@ It contains the following information:
 - Each created context is stored with its associated information in a dynamically
 growing array in the DLT user library. The index in this array is sent.
 
-#### User Message: Injection
+#### 사용자 메시지: 인젝션
 
 This message is sent from the DLT daemon to the DLT user library, if an injection
 message was received by the DLT daemon from a DLT client. Via the context, the
@@ -564,7 +564,7 @@ growing array in the DLT user library. The index in this array is sent.
 - Length of the following injection message
 - The contents of the injection message
 
-### DLT daemon: User message handling
+### DLT 데몬: 사용자 메시지 처리하기
 
 Following things occur for the received DLT user messages:
 
@@ -620,7 +620,7 @@ Following things occur for the received DLT user messages:
     - Set specified trace status
     - Send specified log level and trace status to DLT client library
 
-### DLT daemon: Control message handling
+### DLT 데몬: 제어 메시지 처리하기
 
 If the DLT daemon receives a control message request from a DLT client, it handles
 it in the following way. First the service id of the message is detected, and
@@ -719,7 +719,7 @@ For handling of the injection message, the following steps occur:
 request message, and send this user message to the DLT application using the
 DLT user library.
 
-### Mapping to files
+### 파일에 맵핑하기
 
 Here is a description, how the whole project is structured and which files exists.
 The following table shows a top level view of the available Git repositories:
@@ -788,7 +788,7 @@ The public available include directory contains the following header files:
 | dlt_protocol.h | DLT protocol specfic definitions and macros |
 | dlt_types.h | Definition of types, must be adapted to the target architecture and compiler toolchain. |
 
-### Description of used structures in implementation
+### 구현에서 사용되는 구조체에 대한 설명
 
 The following important structures are used in the DLT Daemon and DLT User Library:
 
@@ -816,7 +816,7 @@ The following important structures are used in the DLT Daemon and DLT User Libra
 | DltReceiver | Structure to organize the receiving of data |
 | DltRingbuffer | Structure to organize a ring buffer |
 
-#### Implementation specifics
+#### 구현 상세
 
 - The following preconditions were given prior to implementation:
   - C-only implementation for the DLT daemon and the DLT user library
