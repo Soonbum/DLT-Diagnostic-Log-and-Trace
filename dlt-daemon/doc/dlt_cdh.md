@@ -6,7 +6,7 @@
 
 시스템에서 프로그램 충돌이 발생하면 코어 덤프 핸들러가 트리거되어 시스템에서 생성된 코어 덤프에서 관련 정보를 추출합니다. 이 추출된 정보를 ECU의 파일 시스템에 코어 덤프 핸들러 파일로 저장합니다. 이러한 파일은 [DLT Filetransfer](dlt_filetransfer.md) 메커니즘을 통해 전송됩니다. 전송된 정보를 결합하고 개발자 툴체인(gdb, Release SW, 기타)에 통합할 수 있습니다.
 
-![alt text](images/dlt_core_dump_handler.png "DLT CDH")
+![alt text](https://github.com/COVESA/dlt-daemon/doc/images/dlt_core_dump_handler.png "DLT CDH")
 
 ## 통합
 
