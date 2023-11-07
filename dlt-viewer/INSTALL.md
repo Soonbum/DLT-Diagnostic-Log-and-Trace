@@ -1,8 +1,8 @@
-# DLT Viewer - Installation
+# DLT 뷰어 - 설치
 
 Alexander Wenzel <Alexander.AW.Wenzel@bmw.de>
 
-## Instructions for installing DLT Viewer (GUI)
+## DLT 뷰어 설치 방법 (GUI)
 
 * Install Qt5 SDK including Qt Creator and Microsoft Visual Studio Build Tools 2017
 * Tested with QT 5.15.2 (Windows) and Qt 5.12.8 (Ubuntu 20.04LTS Linux)
@@ -11,7 +11,7 @@ Alexander Wenzel <Alexander.AW.Wenzel@bmw.de>
 * Build Release in Qt Creator or via CMake (see last).
 * Optional Linux: set the library path in Qt Creator: Add variable to Projects/Build Settings/Build Environment: LD_LIBRARY_PATH = .
 
-## Instructions for installing DLT Viewer (Linux command line)
+## DLT 뷰어 설치 방법 (Linux command line)
 
 * sudo apt install build-essential
 * sudo apt install qtcreator
@@ -25,7 +25,7 @@ Alexander Wenzel <Alexander.AW.Wenzel@bmw.de>
 * sudo ldconfig
 * Optional: set the library path: LD_LIBRARY_PATH = .
 
-## Build DLT Viewer in Windows
+## Windows에서 DLT 뷰어 빌드하기
 
 * Install Qt5 SDK and Microsoft Visual Studio Build Tools 2019
 * If needed adapt you configuration in build_sdk_windows_qt5_MSVC.bat
@@ -33,7 +33,7 @@ Alexander Wenzel <Alexander.AW.Wenzel@bmw.de>
 
 The DLT Viewer will be installed by default in C:\DltViewerSDK
 
-## Optional: Prepare Installation Qwt (Windows)
+## 선택사항: Qwt 설치 준비 (Windows)
 
 Some DLT Viewer plugins will use the Qwt library for displaying graphs.
 The Qwt library must be compiled and installed before it can be used.
@@ -44,12 +44,12 @@ The Qwt library must be compiled and installed before it can be used.
 * Copy Qwt zip package qwt-6.1.6.zip to DLT Viewer folder
 * Run build_qwt_windows_qt5_MSVC.bat
 
-## Create SDK (Linux)
+## SDK 생성하기 (Linux)
 
 * Compile DLT Viewer as described in "Build DLT-viewer Linux"
 * Call "sudo make install" to install dlt-viewer including libraries and headers for SDK
 
-## Create SDK Documentation (Windows)
+## SDK 문서 생성하기 (Windows)
 
 * Install doxygen and graphviz
 * Change into project directory
@@ -58,7 +58,7 @@ The Qwt library must be compiled and installed before it can be used.
 * (Optional) doxygen sdk\doxygen_dlt_viewer_qdlt.cfg
 * You will find the documentation in the doc directory
 
-## Create SDK Documentation (Linux)
+## SDK 문서 생성하기 (Linux)
 
 * Install doxygen and graphviz
 * Change into project directory
@@ -67,7 +67,7 @@ The Qwt library must be compiled and installed before it can be used.
 * (Optional) doxygen sdk/doxygen_dlt_viewer_qdlt.cfg
 * You will find the documentation in the doc directory
 
-## Create manuals documentation
+## 매뉴얼 문서 생성하기
 
 The plugins programming manual is generated with asciidoc.
 Call 
@@ -85,7 +85,7 @@ sudo apt-get install texlive texlive-latex-extra
 To create a pdf format output use:
 pdflatex dlt-viewer_user_manual.tex
 
-## Instructions for building DLT Viewer with CMake (Linux and MacOS command line)
+## CMake로 DLT 뷰어 빌드하는 방법 (Linux 및 MacOS command line)
 
 CMake is a "meta" make system.  This means CMake creates a make system 
 for various make solutions including command line build tools like
@@ -123,7 +123,7 @@ Then give the Qt directory to CMake and build:
 The application is built in "bin/DLT Viewer.app", it can be launched from Finder or the command line:
 open -a $DLT_BUILD_DIR/bin/DLT\ Viewer.app
 
-## Building DLT Viewer release version with Qmake on MacOs
+## MacOS에서 Qmake로 DLT 뷰어 릴리즈 버전 빌드하기
 
 Sometimes building with Cmake or in Qt Creator leads to Plugins not working in  DLT Viewer.
 Building with qmake in release version gets rid of this problem.
