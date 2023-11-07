@@ -1,21 +1,21 @@
 # Diagnostic Log and Trace Viewer
 
-## Overview
+## 개요
 
-The Diagnostic Log and Trace Viewer is an application that can send and receive control messages to the DLT daemon, e.g. to set individual log levels of applications and contexts or get the list of applications and contexts registered in the DLT daemon. DLT viewer is based on Qt for Windows and Linux and can run on the Mac though that is not officially supported.
+Diagnostic Log and Trace Viewer는 DLT 데몬에 제어 메시지를 주고 받을 수 있는 애플리케이션입니다. 예를 들어, 애플리케이션과 컨텍스트의 개별 로그 레벨을 설정하거나 DLT 데몬에 등록된 애플리케이션과 컨텍스트의 목록을 가져올 수 있습니다. DLT 뷰어는 Windows 및 Linux용 Qt를 기반으로 하며 공식적으로 지원되지는 않지만 Mac에서 실행할 수 있습니다.
 
-## Documentation
+## 문서
 
-+ DLT Release Notes: ReleaseNotes.txt
-+ DLT Installation: INSTALL.md
++ DLT 릴리즈 노트: ReleaseNotes.txt
++ DLT 설치: INSTALL.md
 
-### Command line usage;
+### 커맨드 라인 사용법;
 
 + Windows: `dlt-viewer.exe [OPTIONS]`
 + Linux: `dlt-viewer [OPTIONS]`
 + MacOS: `open -a $DLT_BUILD_DIR/bin/DLT\ Viewer.app --args [OPTIONS]`
 
-Options: 
+옵션:
 + `-h` Print usage
 + `-p projectfile` Loading project file on startup (must end with .dlp)
 + `-l logfile`     Loading logfile on startup (must end with .dlt)
@@ -29,11 +29,11 @@ Options:
 + `-dd` Conversion will NOT be done, save as decoded messages in dlt format"
 + `-e "name of plugin|command in plugin|param1|..|param<n>"` Execute a plugin command with <n> parameters
 
-## API Documentation
+## API 문서
 
 See INSTALL.txt regarding doxygen API documentation generation.
 
-## Software/Hardware
+## 소프트웨어/하드웨어
 
 Developed with QT 5 (http://qt-project.org/)
 Tested with Windows 10 + Qt 5.12.12 + Microsoft Visual Studio Build Tools 2017
@@ -49,22 +49,22 @@ License
 
 Full information on the license for this software is available in the "LICENSE.txt" file.
 
-## Source Code for DLT Viewer (This repository)
+## DLT 뷰어를 위한 소스 코드
 
 https://github.com/COVESA/dlt-viewer 
 
-## Homepage
+## 홈페이지
 
-[Diagnostic Log and Trace Homepage](https://github.com/COVESA/dlt-viewer) on Github
+Github 상의 [Diagnostic Log and Trace Homepage](https://github.com/COVESA/dlt-viewer)
 
-## Issues and questions
+## 이슈 및 질문
 
 [Diagnostic Log and Trace Homepage Issues](https://github.com/COVESA/dlt-viewer/issues)
 
-## Additional Plugins
+## 추가 플러그인
 
 https://github.com/svlad-90/DLT-Message-Analyzer
 
-## Contact
+## 연락처
 
 Alexander Wenzel Alexander.AW.Wenzel@bmw.de and Gernot Wirschal Gernot.Wirschal@bmw.de
