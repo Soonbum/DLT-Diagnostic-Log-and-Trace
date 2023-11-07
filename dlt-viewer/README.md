@@ -16,22 +16,22 @@ Diagnostic Log and Trace Viewer는 DLT 데몬에 제어 메시지를 주고 받�
 + MacOS: `open -a $DLT_BUILD_DIR/bin/DLT\ Viewer.app --args [OPTIONS]`
 
 옵션:
-+ `-h` Print usage
-+ `-p projectfile` Loading project file on startup (must end with .dlp)
-+ `-l logfile`     Loading logfile on startup (must end with .dlt)
-+ `-f filterfile`  Loading filterfile on startup (must end with .dlf)
-+ `-s or --silent`  Enable silent mode without warning message boxes
-+ `-v or --version` Only show version and buildtime information
-+ `-c logfile textfile`  Convert logfile file to textfile (logfile must end with .dlt)
-+ `-u` Conversion will be done in UTF8 instead of ASCII";
-+ `-csv` Conversion will be done in CSV format";
-+ `-d` Conversion will NOT be done, save in dlt file format again instead"
-+ `-dd` Conversion will NOT be done, save as decoded messages in dlt format"
-+ `-e "name of plugin|command in plugin|param1|..|param<n>"` Execute a plugin command with <n> parameters
++ `-h` 사용법 출력
++ `-p projectfile` 구동시 프로젝트 파일 불러오기 (.dlp로 끝나야 함)
++ `-l logfile`     구동시 로그 파일 불러오기 (.dlt로 끝나야 함)
++ `-f filterfile`  구동시 필터 파일 불러오기 (.dlf로 끝나야 함)
++ `-s 또는 --silent`  경고 메시지 박스가 없는 사일런스 모드 활성화
++ `-v 또는 --version` 버전 및 빌드 시간 정보만 보여줌
++ `-c logfile textfile`  로그 파일을 텍스트 파일로 변환함 (로그 파일은 .dlt로 끝나야 함)
++ `-u` ASCII 대신 UTF8로 변환하게 됨";
++ `-csv` CSV 포맷으로 변환하게 됨";
++ `-d` 변환하지 않을 것입니다. 대신 dlt 파일 포맷으로 다시 저장함"
++ `-dd` 변환하지 않을 것입니다. dlt 포맷 형태로 디코딩된 메시지를 저장함"
++ `-e "name of plugin|command in plugin|param1|..|param<n>"` n개 파라미터와 함께 플러그인 커맨드를 실행함
 
 ## API 문서
 
-See INSTALL.txt regarding doxygen API documentation generation.
+doxygen API 문서 생성에 관해서는 INSTALL.txt를 보십시오.
 
 ## 소프트웨어/하드웨어
 
